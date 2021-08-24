@@ -14,17 +14,17 @@ function logrequest(request, response, next){
 
     const logLabel = `[${method.toUpperCase()}] ${url}`;
     console.log(logLabel);
-    return next();
+    return next;
 
 }
 app.use(logrequest);
 
 
 app.get('/projects', (request, response) =>{
-    const { id } = request.query;
+    const { title } = request.query;
 
-    const results = id
-        ? projects.filter(project => project.id.includes(id))
+    const results = title
+        ? projects.filter(project => project.title.includes(title))
         : projects;
 
     return response.json(results);
